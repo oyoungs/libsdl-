@@ -57,6 +57,8 @@ namespace audio {
         SDL_PauseAudioDevice(_devid, paused);
     }
 
+    device::~device() { if(good()) close(); }
+
     template <typename T, void (T::*func)(Uint8 *, int)>
     void sdl_audio_spec_callback(void *obj, Uint8 * stream, int size)
     {
@@ -76,7 +78,7 @@ namespace audio {
     }
 
     void device::close() {
-        SDL_CloseAudioDevice(_devid);
+        static_cast<void>(SDL_CloseAudioDevice(_devid)), _devid = 0;
     }
 
     void device::set_audio_callback(const device::callback_t& callback) {
@@ -89,6 +91,8 @@ namespace audio {
     }
 
     int init() { return SDL_InitSubSystem(SDL_INIT_AUDIO); }
+
+    void quit() { SDL_QuitSubSystem(SDL_INIT_AUDIO); }
 
 }
 

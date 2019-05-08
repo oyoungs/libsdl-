@@ -36,6 +36,7 @@ int main(int , char **)
     std::cout << "real frequency: " << device.obtained_spec().freq << std::endl;
     std::cout << "real channels: " << device.obtained_spec().channels << std::endl;
 
+    sdl::audio::quit();
 
     return 0;
 }

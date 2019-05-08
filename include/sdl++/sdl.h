@@ -95,6 +95,8 @@ namespace sdl {
 
             void pause(bool paused);
 
+            ~device();
+
         private:
             void process(Uint8 *stream, int size);
 
@@ -108,6 +110,7 @@ namespace sdl {
         };
 
         int init();
+        void quit();
     }
 
 }
