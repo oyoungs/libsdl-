@@ -24,3 +24,14 @@ target_link_libraries(sdl++ SDL2 SDL2_mixer)
 add_executable(sdl-cli
    examples/main.cc)
 target_link_libraries(sdl-cli sdl++)
+
+
+install(TARGETS sdl++
+    RUNTIME DESTINATION bin
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    )
+
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/sdl++
+    DESTINATION include
+    )
